@@ -29,6 +29,7 @@ public class LoadStreamService extends LoadServiceGrpc.LoadServiceImplBase{
 
     @Override
     public void startStream(com.multicloud.ba.grpc.LoadParams request, StreamObserver<com.multicloud.ba.grpc.StreamEvent> responseObserver) {
+
         streamsStarted.increment();
 
         long startNanos = System.nanoTime();
@@ -71,7 +72,6 @@ public class LoadStreamService extends LoadServiceGrpc.LoadServiceImplBase{
                 messagesSent.increment();
                 grpcPayloadBytes.increment(payloadBytes);
 
-                // fail_after_sec:
                 if (failAfterSec > 0 && (i * intervalMs) / 1000 >= failAfterSec) {
                     throw new RuntimeException("Fail after " + failAfterSec + " seconds (test)");
                 }
