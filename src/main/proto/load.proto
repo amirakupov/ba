@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.multicloud.ba.grpc";
+option java_outer_classname = "LoadProto";
+
+service LoadService {
+  rpc StartStream(LoadParams) returns (stream StreamEvent);
+}
+
+message LoadParams {
+  int32  duration_sec   = 1;  // сколько секунд стримить
+  double msg_per_sec    = 2;  // сообщений в секунду
+  int32  payload_bytes  = 3;  // размер каждого payload
+  int32  jitter_ms      = 4;  // макс джиттер между сообщениями
+  int32  fail_after_sec = 5;  // если >0 — оборвать стрим для теста
+}
+
+message StreamEvent {
+  int64 seq      = 1;
+  int64 ts_ms    = 2;
+  bytes payload  = 3;
+  double cpu_load = 4;
+  int64 heap_used = 5;
+}
