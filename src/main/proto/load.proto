@@ -9,11 +9,11 @@ service LoadService {
 }
 
 message LoadParams {
-  int32  duration_sec   = 1;  // сколько секунд стримить
-  double msg_per_sec    = 2;  // сообщений в секунду
-  int32  payload_bytes  = 3;  // размер каждого payload
-  int32  jitter_ms      = 4;  // макс джиттер между сообщениями
-  int32  fail_after_sec = 5;  // если >0 — оборвать стрим для теста
+  int32  duration_sec   = 1;
+  double msg_per_sec    = 2;
+  int32  payload_bytes  = 3;
+  int32  jitter_ms      = 4;
+  int32  fail_after_sec = 5;
 }
 
 message StreamEvent {

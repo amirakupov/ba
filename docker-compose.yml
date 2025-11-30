@@ -32,3 +32,14 @@ services:
     depends_on:
       - app
 
+  k6-grpc:
+    image: grafana/k6
+    command: [ "run", "/scripts/grpc_stream.js"]
+    environment:
+      - GRPC_TARGET=app:9091
+    volumes:
+      - ./scripts:/scripts:ro
+      - ./src/main/proto:/proto:ro
+    depends_on:
+      - app
+
