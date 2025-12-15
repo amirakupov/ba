@@ -34,7 +34,7 @@ services:
 
   k6-grpc:
     image: grafana/k6
-    command: [ "run", "/scripts/grpc_stream.js"]
+    command: [ "run", "/scripts/grpcUnary.js"]
     environment:
       - GRPC_TARGET=app:9091
     volumes:

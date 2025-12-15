@@ -5,7 +5,8 @@ option java_package = "com.multicloud.ba.grpc";
 option java_outer_classname = "LoadProto";
 
 service LoadService {
-  rpc StartStream(LoadParams) returns (stream StreamEvent);
+  rpc Unary(LoadParams) returns (StreamEvent);
+  rpc Stream(LoadParams) returns (stream StreamEvent);
 }
 
 message LoadParams {

@@ -45,10 +45,11 @@ public class LoadService {
         long end = System.nanoTime() + ms * 1_000_000L;
         double x = 0;
         while (System.nanoTime() < end) {
-            x += Math.sqrt(1234.5678 + rnd.nextDouble());
+            x += Math.sqrt(1234.5678 + (x % 1.0));
         }
         return map("ok", true, "ms", ms, "acc", x, "ts", System.currentTimeMillis());
     }
+
     private static Map<String,Object> map(Object... kv) {
         Map<String,Object> m = new HashMap<>();
         for (int i=0;i<kv.length;i+=2) m.put(String.valueOf(kv[i]), kv[i+1]);

@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  app:
+    profiles: ["local"]
+  prometheus:
+    volumes: ["./prometheus.gcp.yml:/etc/prometheus/prometheus.yml:ro"]
+  k6:
+    environment:
+      - TARGET=${TARGET}
+  k6-egress:
+    environment:
+      - TARGET=${TARGET}
+      - SIZE=${SIZE:-50MB}
+      - CHUNK=${CHUNK:-65536}
+  k6-grpc:
+    environment:
+      - GRPC_TARGET=${GRPC_TARGET}

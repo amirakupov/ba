@@ -1,6 +1,6 @@
 global: { scrape_interval: 2s }
 scrape_configs:
-  - job_name: 'ba-app'
+  - job_name: 'ba-vm'
     metrics_path: /actuator/prometheus
     static_configs:
-      - targets: ['app:8080']
+      - targets: ['http://104.155.69.110:8080']

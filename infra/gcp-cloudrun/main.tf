@@ -12,7 +12,10 @@ provider "google" {
 variable "project" {}
 variable "region"  { default = "europe-west1" }
 variable "service_name" { default = "ba-cpu" }
-variable "container_image" { description = "amirkukei/ba-cpu:latest" }
+variable "container_image" {
+  description = "Container image for BA CPU service"
+  default     = "amirkukei/ba-cpu:latest"
+}
 variable "max_instances" { default = 10 }
 variable "concurrency"   { default = 80 }
 resource "google_project_service" "run" {
@@ -48,7 +51,6 @@ resource "google_cloud_run_v2_service" "app" {
 
   depends_on = [google_project_service.run]
 }
-
 
 resource "google_cloud_run_service_iam_member" "invoker" {
   location = google_cloud_run_v2_service.app.location

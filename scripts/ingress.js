@@ -2,8 +2,9 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 const BASE = __ENV.TARGET || 'http://104.155.69.110:8080';
-const SIZE = __ENV.SIZE || '10MB';
-const CHUNK = __ENV.CHUNK || '65536';
+const SIZE_MB = Number(__ENV.SIZE_MB || 10);
+
+const body = new Uint8Array(SIZE_MB * 1024 * 1024);
 
 export const options = {
     vus: 10,
@@ -15,16 +16,10 @@ export const options = {
 };
 
 export default function () {
-    const url = `${BASE}/api/egress?size=${SIZE}&chunk=${CHUNK}`;
-
-    const res = http.get(url, {
-        responseType: 'none',
-        tags: { endpoint: 'egress', size: SIZE },
+    const res = http.post(`${BASE}/api/ingress`, body, {
+        headers: { 'Content-Type': 'application/octet-stream' },
+        tags: { endpoint: 'ingress', sizeMB: String(SIZE_MB) },
     });
-
-    check(res, {
-        'status is 200': (r) => r.status === 200,
-    });
-
+    check(res, { 'status is 200': (r) => r.status === 200 });
     sleep(0.1);
 }
