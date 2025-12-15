@@ -12,6 +12,11 @@ target/
 .settings
 .springBeans
 .sts4-cache
+#terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
 
 ### IntelliJ IDEA ###
 .idea
