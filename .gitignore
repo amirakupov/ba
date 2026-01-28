@@ -12,6 +12,13 @@ target/
 .settings
 .springBeans
 .sts4-cache
+
+google-cloud-sdk/
+
+.env
+.env.*
+**/.env
+**/.env.*
 # Terraform
 **/.terraform/**
 **/*.tfstate
