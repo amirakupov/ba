@@ -12,11 +12,22 @@ target/
 .settings
 .springBeans
 .sts4-cache
-#terraform
-**/.terraform/*
-*.tfstate
-*.tfstate.*
+# Terraform
+**/.terraform/**
+**/*.tfstate
+**/*.tfstate.*
+**/.terraform.lock.hcl
 crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
 
 ### IntelliJ IDEA ###
 .idea
