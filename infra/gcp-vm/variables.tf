@@ -1,11 +1,11 @@
 variable "project" {}
 
 variable "region" {
-  default = "europe-west1"
+  default = "europe-west8"
 }
 
 variable "zone" {
-  default = "europe-west1-b"
+  default = "europe-west8-b"
 }
 
 variable "env" {
@@ -15,7 +15,7 @@ variable "env" {
 
 variable "container_image" {
   description = "Container image for BA CPU service"
-  default     = "amirkukei/ba-cpu:latest"
+  default     = "amirkukei/ba-cpu:2025-12-31-02"
 }
 
 variable "egress_max_mb" {

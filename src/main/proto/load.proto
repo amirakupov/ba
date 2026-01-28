@@ -6,7 +6,7 @@ option java_outer_classname = "LoadProto";
 
 service LoadService {
   rpc Unary(LoadParams) returns (StreamEvent);
-  rpc Stream(LoadParams) returns (stream StreamEvent);
+  rpc Stream(stream LoadParams) returns (stream StreamEvent);
 }
 
 message LoadParams {

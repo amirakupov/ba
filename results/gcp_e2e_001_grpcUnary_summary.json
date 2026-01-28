@@ -1,0 +1,87 @@
+{
+    "root_group": {
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {},
+        "checks": {
+                "gRPC status OK": {
+                    "fails": 0,
+                    "name": "gRPC status OK",
+                    "path": "::gRPC status OK",
+                    "id": "b59b27e3359b32fdaa328b512d21492f",
+                    "passes": 587
+                }
+            }
+    },
+    "metrics": {
+        "data_sent": {
+            "rate": 1701.385474951178,
+            "count": 52788
+        },
+        "unary_roundtrip_ms": {
+            "avg": 1059.5161839863713,
+            "min": 1022,
+            "med": 1051,
+            "max": 1337,
+            "p(90)": 1085,
+            "p(95)": 1133.1,
+            "thresholds": {
+                "p(95)<2000": false
+            }
+        },
+        "grpc_req_duration": {
+            "max": 1336.690917,
+            "p(90)": 1084.1217838,
+            "p(95)": 1132.9649751,
+            "avg": 1059.0777010698464,
+            "min": 1022.253083,
+            "med": 1050.93525,
+            "thresholds": {
+                "p(95)<2000": false
+            }
+        },
+        "dropped_iterations": {
+            "count": 14,
+            "rate": 0.4512274882419582
+        },
+        "data_received": {
+            "count": 652824,
+            "rate": 21040.86669886201
+        },
+        "vus_max": {
+            "value": 24,
+            "min": 15,
+            "max": 24
+        },
+        "checks": {
+            "passes": 587,
+            "fails": 0,
+            "value": 1
+        },
+        "iteration_duration": {
+            "max": 2124.758417,
+            "p(90)": 1098.0334422,
+            "p(95)": 1145.4521631,
+            "avg": 1065.1791511533215,
+            "min": 1022.874167,
+            "med": 1051.772084
+        },
+        "iterations": {
+            "count": 587,
+            "rate": 18.91932397128782
+        },
+        "unary_errors_total": {
+            "count": 0,
+            "rate": 0,
+            "thresholds": {
+                "count==0": false
+            }
+        },
+        "vus": {
+            "value": 1,
+            "min": 1,
+            "max": 22
+        }
+    }
+}

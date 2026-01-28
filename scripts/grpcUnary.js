@@ -1,47 +1,54 @@
 import grpc from 'k6/net/grpc';
-import { check, sleep } from 'k6';
+import { check } from 'k6';
 import { Trend, Counter } from 'k6/metrics';
 
 const client = new grpc.Client();
 client.load(['/proto'], 'load.proto');
 
-const grpcUnaryDuration = new Trend('grpc_unary_duration_ms');
-const grpcUnaryErrors = new Counter('grpc_unary_errors_total');
+const unary_roundtrip_ms = new Trend('unary_roundtrip_ms', true);
+const unary_errors_total = new Counter('unary_errors_total');
 
 export const options = {
-    vus: 10,
-    duration: '30s',
+    scenarios: {
+        unary: {
+            executor: 'constant-arrival-rate',
+            rate: Number( 20),
+            timeUnit: '1s',
+            duration: '30s',
+            preAllocatedVUs: 10,
+            maxVUs: 50,
+        },
+    },
     thresholds: {
-        grpc_unary_duration_ms: ['p(95) < 10000'],
-        grpc_unary_errors_total: ['count == 0'],
+        unary_roundtrip_ms: ['p(95)<2000'],
+        unary_errors_total: ['count==0'],
+        grpc_req_duration: ['p(95)<2000'],
     },
 };
 
 let connected = false;
 
 export default function () {
-    const target = __ENV.GRPC_TARGET || '104.155.69.110:9091';
-
+    const target = __ENV.GRPC_TARGET;
     if (!connected) {
         client.connect(target, { plaintext: true });
         connected = true;
     }
 
     const params = {
-        duration_sec: 10,
+        duration_sec: Number(__ENV.DURATION_SEC || 1),
         msg_per_sec: 1,
-        payload_bytes: 1024,
+        payload_bytes: Number(__ENV.PAYLOAD_BYTES || 1024),
         jitter_ms: 0,
         fail_after_sec: 0,
     };
 
-    const start = Date.now();
+    const t0 = Date.now();
     const res = client.invoke('LoadService/Unary', params);
-    grpcUnaryDuration.add(Date.now() - start);
+    unary_roundtrip_ms.add(Date.now() - t0);
 
     const ok = res && res.status === grpc.StatusOK;
-    if (!ok) grpcUnaryErrors.add(1);
+    if (!ok) unary_errors_total.add(1);
 
     check(res, { 'gRPC status OK': (r) => r && r.status === grpc.StatusOK });
-    sleep(1);
 }

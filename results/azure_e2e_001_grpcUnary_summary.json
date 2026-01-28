@@ -1,0 +1,87 @@
+{
+    "root_group": {
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {},
+        "checks": {
+                "gRPC status OK": {
+                    "passes": 587,
+                    "fails": 0,
+                    "name": "gRPC status OK",
+                    "path": "::gRPC status OK",
+                    "id": "b59b27e3359b32fdaa328b512d21492f"
+                }
+            },
+        "name": "",
+        "path": ""
+    },
+    "metrics": {
+        "iteration_duration": {
+            "min": 1019.023667,
+            "med": 1041.058917,
+            "max": 1408.718584,
+            "p(90)": 1077.1695008,
+            "p(95)": 1109.6949634999999,
+            "avg": 1049.3598408654163
+        },
+        "iterations": {
+            "count": 587,
+            "rate": 18.85130990865083
+        },
+        "dropped_iterations": {
+            "count": 14,
+            "rate": 0.4496053470547046
+        },
+        "data_received": {
+            "count": 652824,
+            "rate": 20965.225791831464
+        },
+        "unary_errors_total": {
+            "count": 0,
+            "rate": 0,
+            "thresholds": {
+                "count==0": false
+            }
+        },
+        "grpc_req_duration": {
+            "avg": 1046.4289942095406,
+            "min": 1018.471292,
+            "med": 1040.299791,
+            "max": 1275.619042,
+            "p(90)": 1063.6093084,
+            "p(95)": 1106.0332214999999,
+            "thresholds": {
+                "p(95)<2000": false
+            }
+        },
+        "data_sent": {
+            "count": 52727,
+            "rate": 1693.310081010958
+        },
+        "unary_roundtrip_ms": {
+            "med": 1041,
+            "max": 1276,
+            "p(90)": 1064,
+            "p(95)": 1106,
+            "avg": 1046.8432708688244,
+            "min": 1019,
+            "thresholds": {
+                "p(95)<2000": false
+            }
+        },
+        "vus": {
+            "value": 1,
+            "min": 1,
+            "max": 21
+        },
+        "vus_max": {
+            "value": 24,
+            "min": 15,
+            "max": 24
+        },
+        "checks": {
+            "passes": 587,
+            "fails": 0,
+            "value": 1
+        }
+    }
+}
